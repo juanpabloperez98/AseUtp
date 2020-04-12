@@ -1,0 +1,35 @@
+    .icono-nav {
+        width: 25%;
+    }
+    
+    .background-overlay {
+        background: rgba(48, 51, 107, 1);
+    }
+    
+    #fondo {
+        background-image: url(../img/landing1.jpg);
+        /* background-color: #333333; */
+        background-size: cover;
+        padding-top: 90px;
+        min-height: 600px;
+    }
+    
+    .fondodepantalla {
+        background-image: url(../img/landing2.jpg);
+        background-size: cover;
+        min-height: 390px;
+    }
+    
+    .card1 {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: aqua;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
+    }
