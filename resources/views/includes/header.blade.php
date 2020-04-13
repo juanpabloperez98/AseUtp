@@ -12,13 +12,19 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item text-white">
-                    <a class="nav-link" {{-- href="{{route('login')}}" --}}>Iniciar Sesion</a>
+                    <a class="nav-link" href="{{route('login')}}">Iniciar Sesion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" {{-- href="{{route('registro')}}" --}}>Registrarse</a>
+                    <a class="nav-link" href="{{route('register')}}">Registrarse</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('asociate')}}">Asociarse</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Pertenece a nosotros
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item"  href="{{route('asociate')}}">Asociarse</a>
+                        <a class="dropdown-item"  href="{{route('vervalidacion')}}">Ver estado</a>                                               
+                    </div>                    
                 </li>
             </ul>
         </div>

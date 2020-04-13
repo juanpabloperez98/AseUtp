@@ -15,7 +15,7 @@
                     <div class="col-sm-12">
                     <p class=" display-4  text-dark font-weight-light mb-5">Encuentra tus compañeros, chatea, contáctalos y entérate de las últimas noticias para los egresados UTP</p>
                     <div class="justify-content-around">
-                        <a class="btn btn-dark btn-xl" {{-- href="{{route('registro')}}" --}}>Registrarse</a>
+                        <a class="btn btn-dark btn-xl" href="{{route('register')}}">Registrarse</a>
 
                         <a class="btn btn-dark btn-xl" {{-- href=" {{route('login')}}" --}}>Iniciar Sesión</a>
                         <a class="btn btn-dark btn-xl" {{-- href="{{route('asociate')}} " --}}>Asociate ya</a>

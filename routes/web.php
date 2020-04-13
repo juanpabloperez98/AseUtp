@@ -28,7 +28,21 @@ Route::group(['prefix'=>'solicitudes'], function(){
         'as'=>'asociatecreate',
         'uses'=>'SolicitudesController@store'
     ));
-
+    
+    Route::get('validar',array(
+        'as'=>'vervalidacion',
+        'uses'=>'SolicitudesController@vervalidacion'
+    ));
+    
+    Route::post('validar-status',array(
+        'as'=>'validar',
+        'uses'=>'SolicitudesController@statusvalidacion'
+    ));
     
 
 });
+
+Auth::routes();
+
+
+Route::get('/home', 'HomeController@index')->name('home');
