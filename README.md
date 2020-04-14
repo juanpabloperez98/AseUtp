@@ -9,4 +9,12 @@ Esta aplicación esta hecha en ***Laravel Framework 7.5.2 - Composer version 1.1
 
 <img src="https://parzibyte.me/blog/wp-content/uploads/2017/05/archivo-env-ejemplo.png" width="">
 
-Una vez hayamos agregado el .env procederemos a ejecutar las migraciones y los seeders del proyecto, para ellos nos iremos a la carpeta de nuestro proyecto y ejecutaremos el comando ***php artisan migrate:refresh --seed***, con este comando ejecutaremos todas las migraciones y se nos crearan las tablas correspondientes en la base de datos
+Una vez hayamos agregado el .env procederemos a ejecutar las migraciones y los seeders del proyecto, para ellos nos iremos a la carpeta de nuestro proyecto y ejecutaremos el comando ***php artisan migrate:refresh --seed***, con este comando ejecutaremos todas las migraciones y se nos crearan las tablas correspondientes en la base de datos.
+
+Y listo, ya por ultimo nos quedaria ejecutar el comando ***php artisan serve***, y podremos visualizar en nuestro navegador el proyecto
+
+## Autor
+
+**Juan Pablo Perez Santos**
+***Universidad Tecnologica de Pereira***
+
