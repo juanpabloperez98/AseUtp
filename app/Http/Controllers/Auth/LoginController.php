@@ -28,6 +28,8 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    
+
     /**
      * Create a new controller instance.
      *
@@ -36,5 +38,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+
+    public function redirectPath(){
+
+        if(\Auth::user()->tipo_usuario === 'egresado'):
+            return 'perfil/egresados/'.\Auth::user()->id;
+        elseif (\Auth::user()->tipo_usuario === 'admin'):
+            return 'perfil/administrador/'.\Auth::user()->id;
+        endif;
+
+
     }
 }

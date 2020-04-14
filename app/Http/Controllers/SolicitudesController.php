@@ -16,6 +16,13 @@ class SolicitudesController extends Controller
     public function index()
     {
         //
+        $solicitudes = Solicitudes::orderBy('id','asc')->paginate(3);
+
+        return view('admin.solicitudes',array(
+            'solicitudes' => $solicitudes
+        ));
+
+
     }
 
     public function vervalidacion(){

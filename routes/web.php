@@ -17,6 +17,12 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/prueba2', function () {
+    return view('solicitudes');
+});
+
+
+
 Route::group(['prefix'=>'solicitudes'], function(){
 
     Route::get('request',array(
@@ -38,7 +44,27 @@ Route::group(['prefix'=>'solicitudes'], function(){
         'as'=>'validar',
         'uses'=>'SolicitudesController@statusvalidacion'
     ));
+
     
+    Route::get('versolicitudes','SolicitudesController@index')->name('solicitudes.index')
+                                                                ->middleware(['permission:egresados.index','auth']);
+
+
+    
+        
+    
+
+});
+
+
+Route::middleware(['auth'])->group(function(){
+
+    Route::get('perfil/egresados/{user}','EgresadosController@profile')->name('perfil.egresados');
+    Route::get('perfil/administrador/{user}','AdminController@profile')->name('perfil.egresados');
+                                  
+
+   /*  Route::get('/prueba')->name('prueba')
+                        ->middleware('permission:egresados.index'); */
 
 });
 

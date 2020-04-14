@@ -12,53 +12,83 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        // Users
+        // egresados
         Permission::create([
-            'name'=>'Navegar usuarios',
-            'slug'=>'users.index',
-            'description'=>'Lista y navega todos los usuarios del sistema'
-        ]);
-        Permission::create([
-            'name'=>'Ver detaller de usuario',
-            'slug'=>'users.show',
-            'description'=>'Ver en detalle cada usuario del sistema'
-        ]);
-        Permission::create([
-            'name'=>'Edicion usuarios',
-            'slug'=>'users.edit',
-            'description'=>'Editar cualquier dato de un usuario del sistema'
-        ]);
-        Permission::create([
-            'name'=>'Eliminar usuario',
-            'slug'=>'users.destroy',
-            'description'=>'Eliminar cualquier usuario del sistema'
+            'name'=>'Navegar egresados',
+            'slug'=>'egresados.index',
+            'description'=>'Lista y navega todos los egresados del sistema'
         ]);
 
-        // Roles
         Permission::create([
-            'name'=>'Navegar roles',
-            'slug'=>'roles.index',
-            'description'=>'Lista y navega todos los roles del sistema'
+            'name'=>'Ver detalle de egresados',
+            'slug'=>'egresados.show',
+            'description'=>'Ver en detalle cada egresado del sistema'
         ]);
         Permission::create([
-            'name'=>'Ver detaller de rol',
-            'slug'=>'roles.show',
-            'description'=>'Ver en detalle cada rol del sistema'
+            'name'=>'Edicion egresados',
+            'slug'=>'egresados.edit',
+            'description'=>'Editar cualquier dato de un egresado del sistema'
+        ]);
+
+        Permission::create([
+            'name'=>'Eliminar egresados',
+            'slug'=>'egresados.destroy',
+            'description'=>'Eliminar cualquier egresado del sistema'
+        ]);
+
+        // admin
+        Permission::create([
+            'name'=>'Navegar admins',
+            'slug'=>'admin.index',
+            'description'=>'Lista y navega todos los admins del sistema'
         ]);
         Permission::create([
-            'name'=>'Creacion de roles',
-            'slug'=>'roles.create',
-            'description'=>'Editar cualquier dato de un rol del sistema'
+            'name'=>'Ver detaller de admin',
+            'slug'=>'admin.show',
+            'description'=>'Ver en detalle cada admin del sistema'
         ]);
         Permission::create([
-            'name'=>'Edicion roles',
-            'slug'=>'roles.edit',
-            'description'=>'Editar cualquier dato de un rol del sistema'
+            'name'=>'Creacion de admins',
+            'slug'=>'admin.create',
+            'description'=>'Crear cualquier dato de un admin del sistema'
         ]);
         Permission::create([
-            'name'=>'Eliminar rol',
-            'slug'=>'roles.destroy',
-            'description'=>'Eliminar cualquier rol del sistema'
+            'name'=>'Edicion admins',
+            'slug'=>'admin.edit',
+            'description'=>'Editar cualquier dato de un admin del sistema'
+        ]);
+        Permission::create([
+            'name'=>'Eliminar admin',
+            'slug'=>'admin.destroy',
+            'description'=>'Eliminar cualquier admin del sistema'
+        ]);
+
+        // Contenido
+
+        Permission::create([
+            'name'=>'Navegar contenido',
+            'slug'=>'contenido.index',
+            'description'=>'Lista y navega todos los contenidos del sistema'
+        ]);
+        Permission::create([
+            'name'=>'Ver detaller de contenido',
+            'slug'=>'contenido.show',
+            'description'=>'Ver en detalle cada contenido del sistema'
+        ]);
+        Permission::create([
+            'name'=>'Creacion de contenido',
+            'slug'=>'contenido.create',
+            'description'=>'Crear cualquier contenido del sistema'
+        ]);
+        Permission::create([
+            'name'=>'Edicion contenido',
+            'slug'=>'contenido.edit',
+            'description'=>'Editar cualquier contenido del sistema'
+        ]);
+        Permission::create([
+            'name'=>'Eliminar contenido',
+            'slug'=>'contenido.destroy',
+            'description'=>'Eliminar cualquier contenido del sistema'
         ]);
 
 

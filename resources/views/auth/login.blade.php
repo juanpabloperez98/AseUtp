@@ -7,47 +7,69 @@
 
     <div class=" card-group mx-auto p-5" style="width: 70%; height: 60%;">
         <div class="col-lg-6 col-12">
+
             @if(session('message'))
                 
                 @if (session('status') === 'success')
                     <div class="alert alert-success text-center mb-5">
                         {{ session('message')}}
                     </div>                                       
-                @endif                 
-            
+                @endif                             
             @endif
+
+
             <div class="card align-center">
+
                 <div class=" card-body bg-light">                    
+
                     <h4 class="card-title text-center font-italic"> Iniciar Sesión </h4><br><br>
-                    <form class="flex text-center">
+
+                    <form class="flex text-center" method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                @foreach($errors->all() as $error)
+                                    <li> {{$error}} </li>                    
+                                @endforeach
+                                </ul>                    
+                            </div>
+                        @endif  
+
                         <div class="form-group">
-                            <label for="correoLogin">Correo electrónico</label>
-                            <input required type="email" class="form-control" id="correoLogin" aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text text-muted">Ingrese su correo institucional</small><br>
-                        </div>
-                        <div class="form-group">
-                            <label for="passwordLogin">Contraseña</label>
-                            <input required type="password" class="form-control" id="passwordLogin" aria-describedby="passwordHelp">
-                            <small class="form-text text-muted" id="passwordHelp">Ingrese su contraseña</small><br>
-                        </div>
-                        <div class="form-group">
-                            <label class="text-bold" for="opcionProgramaLogin">Escoge el tipo de usuario</label>
-                            <select class="form-control" name="" id="opcionProgramaLogin">
-                            <option value="">Usuario egresado</option>
-                            <option value="">Usuario Administrador</option>
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" required autocomplete="email">
+                            <small class="form-text text-muted" id="passwordHelp">Ingrese su correo electronico</small><br>
+
+                            {{-- <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus> --}}
+
                             
-                        </select>
                         </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                            {{-- <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"> --}}
+                            <small class="form-text text-muted" id="passwordHelp">Ingrese su contraseña</small><br>
+
+
+                        </div>
+
                         <!-- <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Recordarme</label>
                         </div> -->
+
+
                         <div>
                             <h6 class="text-muted">Aún no eres parte de esta comunidad?</h6>
                             <a href="registro.html"> ¡Regístrate ya!</a> <br><br>
                             <small class="text-muted">No recuerdo mi contraseña</small>
                             <a href="#">Recuperar mi contraseña</a> <br><br>
                         </div>
+
                         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                     </form>
                 </div>
@@ -64,7 +86,6 @@
 </div>
 
 
-    
 @endsection
 
 

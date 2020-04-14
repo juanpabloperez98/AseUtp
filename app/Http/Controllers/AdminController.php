@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use \App\Admin;
 
-use App\Egresados;
 use Illuminate\Http\Request;
 
-class EgresadosController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +17,13 @@ class EgresadosController extends Controller
         //
     }
 
-    public function profile($id)
+    public function profile($id)    
     {
-        #$usuario = \Auth::user()->id;
-        $egresado = Egresados::where('user_id',$id)->first();        
+        $admin = Admin::where('user_id',$id)->first();        
         return view('perfil',array(
-            'usuario' => $egresado
+            'usuario' => $admin
         ));
+
     }
 
     /**
@@ -50,10 +50,10 @@ class EgresadosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Egresados  $egresados
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Egresados $egresados)
+    public function show($id)
     {
         //
     }
@@ -61,10 +61,10 @@ class EgresadosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Egresados  $egresados
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Egresados $egresados)
+    public function edit($id)
     {
         //
     }
@@ -73,10 +73,10 @@ class EgresadosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Egresados  $egresados
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Egresados $egresados)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -84,10 +84,10 @@ class EgresadosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Egresados  $egresados
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Egresados $egresados)
+    public function destroy($id)
     {
         //
     }

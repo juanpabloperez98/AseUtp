@@ -41,3 +41,16 @@
     .dropdown-item:hover{
         color:black!important;
     }
+
+    .nav-link{
+        color:white!important;
+    }
+
+    .nav-link:hover{
+        color:gray!important;
+    }
+
+    .pagination{
+        width: 50% !important;
+        margin-left: 43%;
+    }
