@@ -15,6 +15,5 @@ Y listo, ya por ultimo nos quedaria ejecutar el comando ***php artisan serve***,
 
 ## Autor
 
-**Juan Pablo Perez Santos** <\br>
-***Universidad Tecnologica de Pereira***
+**Juan Pablo Perez Santos** - ***Universidad Tecnologica de Pereira***
 
