@@ -141,6 +141,7 @@ class RegisterController extends Controller
             'last_name'=>$data['lastname'],
             'tipo_usuario'=>'egresado',
             'email' => $data['email'],            
+            'clave' => 12345,
             'password' => Hash::make($data['password']),
         ]);
     }
