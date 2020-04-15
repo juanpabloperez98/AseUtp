@@ -58,9 +58,9 @@
                     <label class="text-bold" for="tipoDoc">Tipo de documento</label><br>
                     <select class="btn btn-warning" name="tipoDoc" id="tipoDoc">
                         <!-- <option value="">---</option> -->
-                        <option value="cc">Cédula de ciudadanía</option>
-                        <option value="ce">Cédula de extranjería</option>
-                        <option value="pa">Pasaporte</option>
+                        <option value="cedula ciudadanía">Cédula de ciudadanía</option>
+                        <option value="cedula extrajera">Cédula de extranjería</option>
+                        <option value="pasaport">Pasaporte</option>
                     </select>
                 </div>
 
@@ -370,30 +370,18 @@
 
                 <br>
 
-                <div class="form-group">
-                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña</label>
-                   
-                    <input id="password-confirm" type="password" class="form-control" placeholder="Confirmar Contraseña" name="password_confirmation" required autocomplete="new-password">
+                    <div class="form-group">
+                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña</label>
                     
-                </div>
+                        <input id="password-confirm" type="password" class="form-control" placeholder="Confirmar Contraseña" name="password_confirmation" required autocomplete="new-password">
+                        
+                    </div>
                 <br>
 
                 <button class="btn btn-primary btn-block" type="submit">Registrarse</button>
-
-                {{-- <div class="form-group row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary btn-block">
-                            {{ __('Register') }}
-                        </button>
-                    </div>
-                </div> --}}
                 
             </form>
-
             
-
-            
-
         </div>
 
     </div>

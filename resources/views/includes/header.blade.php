@@ -28,9 +28,21 @@
                         </div>                    
                     </li>
                 @else
+                    {{-- Permisos de ADMIN --}}
                     @can('egresados.index')
-                        <li class="nav-item">
+                        <li class="nav-item mr-3">
                             <a href="{{route('solicitudes.index')}}" class="nav-link">Ver solicitudes</a>
+                        </li>
+                    @endcan
+                    @can('contenido.create')
+                        <li class="nav-item mr-3">
+                            <a href="#" class="nav-link">Crear Nuevo Contenido</a>
+                        </li>
+                    @endcan
+                    {{-- Permisos de ROOT --}}
+                    @can('admin.create')
+                        <li class="nav-item mr-3">
+                            <a href="{{route('admin.create')}}" class="nav-link">Crear administrador</a>
                         </li>
                     @endcan
 
@@ -40,7 +52,13 @@
                             {{ Auth::user()->name }}
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">                            
-                            <a href="{{route('perfil.egresados',['user'=>Auth::user()->id]) }}" class="dropdown-item">Perfil</a>
+                            @if (Auth::user()->tipo_usuario === 'admin')
+                                <a href="{{route('perfil.admin',['user'=>Auth::user()->id]) }}" class="dropdown-item">Perfil</a>
+                            @elseif(Auth::user()->tipo_usuario === 'root')
+                                <a href="{{route('perfil.root')}}" class="dropdown-item">Perfil</a>                                
+                            @else 
+                                <a href="{{route('perfil.egresados',['user'=>Auth::user()->id]) }}" class="dropdown-item">Perfil</a>
+                            @endif
                             <a href="" class="dropdown-item">Actualizar Datos</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

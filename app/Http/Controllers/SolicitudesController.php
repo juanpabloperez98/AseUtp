@@ -43,6 +43,12 @@ class SolicitudesController extends Controller
                 'message'=>$message,
                 'status'=>'success'
             ));
+        }elseif(!empty($solicitud) && $solicitud->estado == 2){
+            $message = 'Su solicitud ha sido rechazada, intente hacer su solicitud con otro correo electronico';
+            return redirect()->route('asociate')->with(array(
+                'message'=>$message,
+                'status'=>'danger'
+            ));
         }elseif(empty($solicitud)){
             $message = 'No se ha realizado ninguna solicitud con este correo electronico, por favor envie una solicitud para ser aprobada';
             return redirect()->route('asociate')->with(array(
@@ -134,6 +140,9 @@ class SolicitudesController extends Controller
     public function edit(Solicitudes $solicitudes)
     {
         //
+        
+
+
     }
 
     /**
@@ -143,9 +152,26 @@ class SolicitudesController extends Controller
      * @param  \App\Solicitudes  $solicitudes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Solicitudes $solicitudes)
+    public function update(Request $request,$id,$estado)
     {
-        //
+        //        
+        $solicitud = Solicitudes::findOrFail($id);
+
+        $solicitud->estado = $estado;
+
+        if($estado == 1){
+            $message = 'La solicitud ha sido aceptada';
+        }else{
+            $message = 'La solicitud ha sido rechazada';
+        }
+       
+
+        $solicitud->update();
+
+        return redirect()->route('solicitudes.index')->with(array(
+            'message' => $message
+        ));
+
     }
 
     /**

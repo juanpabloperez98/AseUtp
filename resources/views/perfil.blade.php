@@ -6,14 +6,16 @@
     <div class="card align-center">
 
        
-        <div class="card-header" style="background-color: rgb(224, 226, 226);">
+        <div class="card-header" style="background-color: rgb(224, 226, 226);">            
             <h3 class="font-italic">{{$usuario->user->name}} - {{$usuario->user->tipo_usuario}}</h3>
         </div>
 
         @if ($usuario->user->tipo_usuario === 'egresado')
             @include('egresados.perfil')                        
         @elseif($usuario->user->tipo_usuario === 'admin')
-            @include('admin.perfil')                        
+            @include('admin.perfil')
+        @else 
+            @include('root.perfil')                        
         @endif        
         
         

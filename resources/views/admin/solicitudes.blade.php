@@ -20,6 +20,13 @@
                 </div>
             </div>
 
+            @if (session('message'))
+                <div class="alert alert-success text-center mb-5">
+                    {{ session('message') }}
+                </div>
+                
+            @endif
+
             <div class="row">
                 <div class="col">
                     <div class="container">
@@ -32,19 +39,31 @@
                                     <div class="">
                                         @if ($solicitud->estado == 1)
                                             <span class="font-weight-bold">El usuario ya ha sido aceptado</span>                                            
+                                        @elseif($solicitud->estado == 2)
+                                        <span class="font-weight-bold">El usuario ha sido rechazado</span>                                            
                                         @else 
-                                            <ul class="navbar-nav mr-auto">
-                                                <li class="nav-item mr-4">
-                                                    <a href="" class="btn btn-success">
-                                                        <i class="fas fa-user-check"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="" class="btn btn-danger">
-                                                        <i class="fas fa-user-times"></i>
-                                                    </a>                                                    
-                                                </li>
-                                            </ul>
+                                            @can('egresados.edit')                                                
+                                                <ul class="navbar-nav mr-auto">
+                                                    <li class="nav-item mr-4">                                                        
+                                                        <form action="{{route('solicitudes.update',['solicitud'=>$solicitud->id,'estado'=>1])}}" method="post">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success">
+                                                                <i class="fas fa-user-check"></i>
+                                                            </button>
+                                                        </form>
+                                                                                                           
+                                                    </li>
+                                                    <li class="nav-item">                                                                                                          
+                                                        <form action="{{route('solicitudes.update',['solicitud'=>$solicitud->id,'estado'=>2])}}" method="post">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="fas fa-user-times"></i>
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            @endcan
+                                            
                                         @endif
                                     </div>
                                 </div>

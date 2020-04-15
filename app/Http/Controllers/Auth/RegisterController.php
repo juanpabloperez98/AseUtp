@@ -99,30 +99,21 @@ class RegisterController extends Controller
             return $response;
         }
 
-        if($user->tipo_usuario === 'admin'):
-            $admin = new Admin();
-            $admin->tipo_documento = $request->input('tipoDoc');
-            $admin->documento = $request->input('docLogin');
-            $admin->user_id = $user->id;
-            $admin->save();
-            $user->assignRoles('admin');            
+        
+        $egresado = new Egresados();
+        $egresado->tipo_documento = $request->input('tipoDoc');
+        $egresado->documento = $request->input('docLogin');
+        $egresado->edad = $request->input('edad');
+        $egresado->pais = $request->input('pais');
+        $egresado->descripcion = $request->input('description');
+        $egresado->programa = $request->input('opcionesPrograma');
+        $egresado->genero = $request->input('genero');
+        $egresado->user_id = $user->id;
 
-        else:
-            $egresado = new Egresados();
-            $egresado->tipo_documento = $request->input('tipoDoc');
-            $egresado->documento = $request->input('docLogin');
-            $egresado->edad = $request->input('edad');
-            $egresado->pais = $request->input('pais');
-            $egresado->descripcion = $request->input('description');
-            $egresado->programa = $request->input('opcionesPrograma');
-            $egresado->genero = $request->input('genero');
-            $egresado->user_id = $user->id;
-
-            $egresado->save();        
-            $user->assignRoles('egresados');
+        $egresado->save();        
+        $user->assignRoles('egresados');
 
 
-        endif;       
         // $this->guard()->login($user);
 
 
@@ -148,7 +139,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'last_name'=>$data['lastname'],
-            'tipo_usuario'=>'admin',
+            'tipo_usuario'=>'egresado',
             'email' => $data['email'],            
             'password' => Hash::make($data['password']),
         ]);

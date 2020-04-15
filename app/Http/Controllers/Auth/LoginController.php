@@ -47,8 +47,9 @@ class LoginController extends Controller
             return 'perfil/egresados/'.\Auth::user()->id;
         elseif (\Auth::user()->tipo_usuario === 'admin'):
             return 'perfil/administrador/'.\Auth::user()->id;
+        else:
+            // \Auth::user()->assignRoles('superuser');
+            return 'perfil/root/';
         endif;
-
-
     }
 }
