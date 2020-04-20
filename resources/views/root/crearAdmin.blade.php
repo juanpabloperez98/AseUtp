@@ -49,13 +49,13 @@
 
                                 <div class="form-group">
                                     <label class="" style="font-style:oblique;" for="name">Nombres</label>
-                                    <input required type="text" class="form-control" id="name" name="name" placeholder="Ingrese los nombres del administradorador">
+                                    <input required type="text" class="form-control" id="name" name="name" placeholder="Ingrese los nombres del administradorador" value="{{old('name')}}">
                                     <!-- <small class="form-text text-muted"> Ingrese su nombre completo</small> -->
                                 </div>
 
                                 <div class="form-group">
                                     <label class="" style="font-style:oblique;" for="lastname">Apellidos</label>
-                                    <input required class="form-control" type="text" placeholder="Ingrese los apellidos del administrador" id="lastname" name="lastname">
+                                    <input required class="form-control" type="text" placeholder="Ingrese los apellidos del administrador" id="lastname" name="lastname" value="{{old('lastname')}}">
                                 </div>
 
                                 <div class="form-group">
@@ -72,23 +72,23 @@
 
                                 <div class="form-group">
                                     <label class="" style="font-style:oblique;" for="docLogin">Documento</label>
-                                    <input required class="form-control" type="number" placeholder="Ingrese su documento" id="docLogin" name="docLogin">
+                                    <input required class="form-control" type="number" placeholder="Ingrese su documento" id="docLogin" name="docLogin" value="{{old('docLogin')}}">
                                 </div>
 
                                 <label class="" style="font-style:oblique;" for="email">Correo</label>
                                 <div class="input-group">
-                                    <input required id="email" name="email" type="text" class="form-control" placeholder="Correo electrónico" aria-label="Recipient's username" aria-describedby="basic-addon2">                                   
+                                    <input required id="email" name="email" type="text" class="form-control" placeholder="Correo electrónico" aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{old('email')}}">                                   
 
                                 </div>
 
                                 <div class="form-group">
                                     <label class="" style="font-style:oblique;" for="dir">Direccion</label>
-                                    <input required class="form-control" type="text" placeholder="Ingrese la direccion de residencia" id="dir" name="dir">
+                                    <input required class="form-control" type="text" placeholder="Ingrese la direccion de residencia" id="dir" name="dir" value="{{old('dir')}}">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="" style="font-style:oblique;" for="tel">Telefono</label>
-                                    <input required class="form-control" type="text" placeholder="Ingrese la direccion de residencia" id="tel" name="tel">
+                                    <input required class="form-control" type="text" placeholder="Ingrese su telefono celular" id="tel" name="tel" value="{{old('tel')}}">
                                 </div>                              
                                 
                                 <br>
@@ -111,9 +111,9 @@
 
 
                                 <div class="form-group ">
-                                    <label style="font-style: oblique;" for="codigoS">Código de seguridad (Escribe un PIN numérico para el administrador)</label>
-                                    <input required class="form-control" type="number" placeholder=" Escribe el código de seguridad " id="codigoS" name="codigoS">
-                                    <small class="form-text text-muted ">Este código será requerido cuando desees recuperar la contraseña</small>
+                                    <label style="font-style: oblique;" for="clave">Código de seguridad (Escribe un PIN numérico para el administrador)</label>
+                                    <input required class="form-control" type="number" placeholder=" 5 digitos " id="clave" name="clave">
+                                    <small class="form-text text-muted ">Este código será requerido cuando desees recuperar la contraseña (5 digitos)</small>
                                 </div>
 
 

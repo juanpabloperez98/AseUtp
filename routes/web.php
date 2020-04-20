@@ -48,6 +48,8 @@ Route::group(['prefix'=>'solicitudes'], function(){
     
     Route::get('versolicitudes','SolicitudesController@index')->name('solicitudes.index')
                                                                 ->middleware(['permission:egresados.index','auth']);
+    Route::get('versolicitud/{solicitud}','SolicitudesController@show')->name('solicitudes.show')
+                                                                ->middleware(['permission:egresados.show','auth']);
 
     Route::post('aceptarsolicitudes/{solicitud}/{estado}','SolicitudesController@update')->name('solicitudes.update')
                                                                                   ->middleware(['auth','permission:egresados.edit']);
@@ -68,6 +70,7 @@ Route::middleware(['auth'])->group(function(){
                                                             ->middleware(['permission:admin.create']);
     Route::post('root/createadmin','AdminController@store')->name('admin.save')
                                                            ->middleware(['permission:admin.create']);
+                                                        
 
 
                                   

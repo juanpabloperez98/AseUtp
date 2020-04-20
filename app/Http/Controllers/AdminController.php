@@ -53,10 +53,10 @@ class AdminController extends Controller
             'lastname' => ['required', 'string', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'docLogin' => ['required','numeric'],
+            'docLogin' => ['required','numeric','digits_between:7,10'],
             'dir' => ['required','string'],
             'tel' => ['required','integer','digits:10'],
-            'codigoS' => ['required','integer','digits:5'],
+            'clave' => ['required','numeric','digits:5','unique:users'],
         ]);
 
 
@@ -68,7 +68,7 @@ class AdminController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->tipo_usuario = 'admin';
-        $user->clave = $request->input('codigoS');
+        $user->clave = $request->input('clave');
 
         $user->save();
 
@@ -78,6 +78,7 @@ class AdminController extends Controller
         $admin->tipo_documento = $request->input('tipoDoc');
         $admin->documento = $request->input('docLogin');
         $admin->direccion = $request->input('dir');
+        $admin->telefono = $request->input('tel');
         $admin->user_id = $user->id;
         $admin->save();
         $user->assignRoles('admin');

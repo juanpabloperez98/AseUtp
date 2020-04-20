@@ -34,36 +34,15 @@
 
                             @foreach ($solicitudes as $solicitud)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{$solicitud->nombre}}
+                                <a href="{{ route('solicitudes.show',['solicitud'=>$solicitud->id]) }}">{{$solicitud->nombre}}</a>
                                 <div class="navbar navbar-expand-md navbar-dark">
                                     <div class="">
                                         @if ($solicitud->estado == 1)
-                                            <span class="font-weight-bold">El usuario ya ha sido aceptado</span>                                            
+                                            <span class="font-weight-bold">El usuario ya ha sido aceptado</span> <i class="fas fa-check"></i>                                          
                                         @elseif($solicitud->estado == 2)
-                                        <span class="font-weight-bold">El usuario ha sido rechazado</span>                                            
+                                        <span class="font-weight-bold">El usuario ha sido rechazado</span> <i class="fas fa-user-times"></i>                                            
                                         @else 
-                                            @can('egresados.edit')                                                
-                                                <ul class="navbar-nav mr-auto">
-                                                    <li class="nav-item mr-4">                                                        
-                                                        <form action="{{route('solicitudes.update',['solicitud'=>$solicitud->id,'estado'=>1])}}" method="post">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-success">
-                                                                <i class="fas fa-user-check"></i>
-                                                            </button>
-                                                        </form>
-                                                                                                           
-                                                    </li>
-                                                    <li class="nav-item">                                                                                                          
-                                                        <form action="{{route('solicitudes.update',['solicitud'=>$solicitud->id,'estado'=>2])}}" method="post">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-danger">
-                                                                <i class="fas fa-user-times"></i>
-                                                            </button>
-                                                        </form>
-                                                    </li>
-                                                </ul>
-                                            @endcan
-                                            
+                                        <span class="font-weight-bold">El usuario esta en lista de espera</span> <i class="fas fa-user"></i>
                                         @endif
                                     </div>
                                 </div>
@@ -83,6 +62,8 @@
         </div>
     </div>
 </div>
+
+
 
 @endsection
 

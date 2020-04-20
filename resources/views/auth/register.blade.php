@@ -45,13 +45,13 @@
 
                 <div class="form-group">
                     <label class="font-weigth-light" for="name">Nombres</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese sus nombres">
+                    <input required type="text" class="form-control" id="name" name="name" placeholder="Ingrese sus nombres" value="{{old('name')}}">
                     <!-- <small class="form-text text-muted"> Ingrese su nombre completo</small> -->
                 </div>
 
                 <div class="form-group">
                     <label class="text-bold" for="lastname">Apellidos</label>
-                    <input class="form-control" type="text" placeholder="Ingrese sus apellidos" id="lastname" name="lastname">
+                    <input required class="form-control" type="text" placeholder="Ingrese sus apellidos" id="lastname" name="lastname" value="{{old('lastname')}}">
                 </div>
 
                 <div class="form-group">
@@ -65,13 +65,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="text-bold" for="docLogin">Documento</label>
-                    <input class="form-control" type="number" placeholder="Ingrese su documento" id="docLogin" name="docLogin">
+                    <label class="text-bold" for="documento">Documento</label>
+                    <input required class="form-control" type="number" placeholder="Ingrese su documento" id="documento" name="documento" value="{{old('documento')}}">
                 </div>
 
                 <div class="form-group">
                     <label class="text-bold d-block" for="email">Correo electronico</label>
-                    <input type="text" name="email" class="form-control" placeholder="Correo electronico" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input required type="text" name="email" class="form-control" placeholder="Correo electronico" aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{old('email')}}">
                     {{-- <div class="input-group-append d-inline-block">
                         <span class="input-group-text" id="basic-addon2">@utp.edu.co</span>
                     </div> --}}
@@ -79,14 +79,13 @@
                 <br>
                 <div class="form-group">
                     <label class="text-bold d-block" for="edad">Edad</label>
-                    <input type="number" name="edad" class="form-control" placeholder="edad">
+                    <input required type="number" name="edad" class="form-control" placeholder="edad" value="{{old('edad')}}">
                 </div>
                 <br>
                 <div class="form-group">
                     <label class="text-bold" for="pais">Pais de residencia</label><br>
 
-                    <select name="pais" class="btn btn-warning">
-                        <option value="Elegir" id="AF">Elegir opción</option>
+                    <select name="pais" class="btn btn-warning">                        
                         <option value="Afganistán" id="AF">Afganistán</option>
                         <option value="Albania" id="AL">Albania</option>
                         <option value="Alemania" id="DE">Alemania</option>
@@ -331,7 +330,7 @@
 
                 <div class="form-group">
                     <label for="description">Una descripcion tuya</label><br>
-                    <textarea class="form-control" placeholder="Cuéntanos de ti..." name="description" id="description" cols="30" rows="10"></textarea>
+                    <textarea required class="form-control" placeholder="Cuéntanos de ti..." name="description" id="description" cols="30" rows="10">{{old('description')}}</textarea>
                 </div>
 
                 <br>
@@ -365,7 +364,7 @@
 
                 <div class="form-group">
                     <label class="font-weigth-bold" for="password">Contraseña</label>
-                    <input class="form-control" placeholder="Ingrese su contraseña" type="password" id="password" name="password">
+                    <input required class="form-control" placeholder="Ingrese su contraseña" type="password" id="password" name="password">
                 </div>
 
                 <br>
@@ -373,10 +372,16 @@
                     <div class="form-group">
                         <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña</label>
                     
-                        <input id="password-confirm" type="password" class="form-control" placeholder="Confirmar Contraseña" name="password_confirmation" required autocomplete="new-password">
+                        <input required id="password-confirm" type="password" class="form-control" placeholder="Confirmar Contraseña" name="password_confirmation" required autocomplete="new-password">
                         
                     </div>
                 <br>
+
+                <div class="form-group ">
+                    <label style="font-style: oblique;" for="clave">Código de seguridad (Escribe un PIN numérico para el administrador)</label>
+                    <input required class="form-control" type="number" placeholder="5 digitos " id="clave" name="clave">
+                    <small class="form-text text-muted ">Este código será requerido cuando desees recuperar la contraseña (5 digitos)</small>
+                </div>
 
                 <button class="btn btn-primary btn-block" type="submit">Registrarse</button>
                 

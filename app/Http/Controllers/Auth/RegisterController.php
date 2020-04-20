@@ -57,15 +57,25 @@ class RegisterController extends Controller
     {
                 
         return Validator::make($data, [
-                'name' => ['required', 'string', 'max:255'],
-                'lastname' => ['required', 'string', 'max:255'],
+                'name' => ['required', 'string', 'max:255','regex:/^[\pL\s\-]+$/u'],
+                'lastname' => ['required', 'string', 'max:255', 'regex:/^[\pL\s\-]+$/u'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'tipoDoc' => ['required', 'string'],
+                'documento' => ['required', 'numeric', 'digits_between:7,10'],
+                'edad' => ['required', 'numeric', 'min:1'],
+                'pais' => ['required', 'string'],                
+                'description' => ['required','string','min:20'],   
+                'clave' => ['required','numeric','digits:5','min:1','unique:users'],
+                
             ]);
     }
 
     public function register(Request $request)
     {
+
+        $this->validator($request->all())->validate();
+        
 
         $solicitud = Solicitudes::where('email',$request->input('email'))->first();       
         
@@ -87,7 +97,6 @@ class RegisterController extends Controller
             ));
         }
 
-        $this->validator($request->all())->validate();      
         
 
 
@@ -102,7 +111,7 @@ class RegisterController extends Controller
         
         $egresado = new Egresados();
         $egresado->tipo_documento = $request->input('tipoDoc');
-        $egresado->documento = $request->input('docLogin');
+        $egresado->documento = $request->input('documento');
         $egresado->edad = $request->input('edad');
         $egresado->pais = $request->input('pais');
         $egresado->descripcion = $request->input('description');
@@ -141,7 +150,7 @@ class RegisterController extends Controller
             'last_name'=>$data['lastname'],
             'tipo_usuario'=>'egresado',
             'email' => $data['email'],            
-            'clave' => 12345,
+            'clave' => $data['clave'],
             'password' => Hash::make($data['password']),
         ]);
     }

@@ -93,7 +93,7 @@ class SolicitudesController extends Controller
         $validate = $this -> validate($request,[
             'name'=>'required|max:255|string',
             'email'=>'required|string|email|unique:solicitudes',
-            'about'=>'required|string'
+            'about'=>'required|string|max:600'
 
         ]);
 
@@ -125,9 +125,13 @@ class SolicitudesController extends Controller
      * @param  \App\Solicitudes  $solicitudes
      * @return \Illuminate\Http\Response
      */
-    public function show(Solicitudes $solicitudes)
+    public function show($id)
     {
-        
+        $solicitud = Solicitudes::findOrFail($id);
+
+        return view('admin.versolicitud',array(
+            'solicitud' => $solicitud
+        ));
         
     }
 

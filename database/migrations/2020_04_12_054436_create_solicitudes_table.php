@@ -17,7 +17,7 @@ class CreateSolicitudesTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('email');
-            $table->string('descripcion');
+            $table->string('descripcion',600);
             $table->integer('estado');
             $table->timestamps();
         });

@@ -41,8 +41,12 @@
                     @endcan
                     {{-- Permisos de ROOT --}}
                     @can('admin.create')
-                        <li class="nav-item mr-3">
-                            <a href="{{route('admin.create')}}" class="nav-link">Crear administrador</a>
+                        <li class="nav-item mr-3 dropdown">
+                            <a href="#" role="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administradores</a>
+                            
+                            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">                            
+                                <a class="dropdown-item" href="{{route('admin.create')}}">Crear administrador</a>
+                            </div>
                         </li>
                     @endcan
 

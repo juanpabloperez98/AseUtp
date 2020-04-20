@@ -40,17 +40,17 @@
 
 
                 <div class="form-group ">
-                    <label for="nombre">Escriba su nombre</label>
-                    <input class="form-control " type="text" name="name" id="name">
+                    <label for="name">Escriba su nombre</label>
+                    <input class="form-control " type="text" name="name" id="name" value="{{old('name')}}">
                 </div>
                 <div class="form-group ">
                     <label for=" ">Escriba su correo electronico</label>
-                    <input class="form-control " type="email" name="email" id="email">
+                    <input class="form-control " type="email" name="email" id="email" value="{{old('email')}}">
                 </div>
 
                 <div class="form-group ">
                     <label for="about">Cuéntanos por qué quieres pertenecer a esta comunidad</label>
-                    <textarea class="form-control " name="about" id="about" cols="30 " rows="10 "></textarea>
+                    <textarea required class="form-control " name="about" id="about" cols="30 " rows="10 ">{{old('about')}}</textarea>
                 </div>
 
                 <button class="btn btn-primary btn-block ">Enviar</button>
