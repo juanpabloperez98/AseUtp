@@ -67,7 +67,7 @@
                             <h6 class="text-muted">Aún no eres parte de esta comunidad?</h6>
                             <a href="{{ route('register') }}"> ¡Regístrate ya!</a> <br><br>
                             <small class="text-muted">No recuerdo mi contraseña</small>
-                            <a href="#">Recuperar mi contraseña</a> <br><br>
+                            <a href="{{ route('recovery.password') }}">Recuperar mi contraseña</a> <br><br>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>

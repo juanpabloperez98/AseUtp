@@ -8,10 +8,20 @@
 
         <div class="card-body bg-light">
             
-            @if (session('message'))
-                <div class="alert alert-success text-center mb-5">
-                    {{ session('message') }}
-                </div>
+            @if(session('message'))
+                
+                @if (session('status') === 'danger')
+                    <div class="alert alert-danger text-center mb-5">
+                        {{ session('message')}}
+                    </div>                                       
+                @endif     
+                
+                @if (session('status') === 'success')
+                    <div class="alert alert-success text-center mb-5">
+                        {{ session('message')}}
+                    </div>                                       
+                @endif  
+                
                 
             @endif
             

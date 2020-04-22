@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Root;
 use App\User;
 
+
 class RootSeeder extends Seeder
 {
     /**

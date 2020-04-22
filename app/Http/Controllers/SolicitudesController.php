@@ -86,6 +86,22 @@ class SolicitudesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+     protected function Create_Solicitud($request)
+     {
+        $solicitud = new Solicitudes;
+        $solicitud->nombre = $request -> input('name');
+        $solicitud->email = $request -> input('email');
+        $solicitud->descripcion = $request -> input('about');
+        $solicitud->estado = 0;
+
+        $solicitud->save();
+        
+        return $message='Su solicitud ha sido enviada';
+
+     }
+
     public function store(Request $request)
     {
         //
@@ -101,14 +117,7 @@ class SolicitudesController extends Controller
 
         
 
-        $solicitud = new Solicitudes;
-        $solicitud->nombre = $request -> input('name');
-        $solicitud->email = $request -> input('email');
-        $solicitud->descripcion = $request -> input('about');
-        $solicitud->estado = 0;
-
-        $solicitud->save();
-        $message='Su solicitud ha sido enviada';
+        $message = $this->Create_Solicitud($request);
 
         
 

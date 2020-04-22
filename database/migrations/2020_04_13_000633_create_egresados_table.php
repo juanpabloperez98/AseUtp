@@ -19,7 +19,7 @@ class CreateEgresadosTable extends Migration
             $table ->integer('documento');            
             $table ->integer('edad');
             $table ->string('pais');
-            $table ->string('descripcion');
+            $table ->string('descripcion',600);
             $table ->string('programa');
             $table ->string('genero');
             $table ->string('foto')->nullable();

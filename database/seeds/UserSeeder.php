@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
             'email' => 'root@gmail.com',
             'password' => Hash::make('root123'),                        
             'tipo_usuario' => 'root',
-            'clave' => 1234
+            'clave' => 1234,
+            'pass_recovery' => 'root123'
         ]);
     }
 }

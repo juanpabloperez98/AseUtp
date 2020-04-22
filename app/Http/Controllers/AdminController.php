@@ -28,6 +28,43 @@ class AdminController extends Controller
 
     }
 
+    public function reset_password_view(){
+
+        return view('recuperarPass');
+
+
+    }
+
+    public function reset_password_post(Request $request)
+    {
+        $email = $request->input('email');
+        $clave = $request->input('clave');
+        $cuenta = User::where('email',$email)->first();
+        if(!empty($cuenta) && $cuenta->clave == $clave):
+
+            return redirect()->route('recovery.password')->with(array(
+                'message' => 'Su contraseña ha sido recuperada exitosamente',
+                'password' => $cuenta->pass_recovery,
+                'status' => 'success'
+            ));
+
+        elseif(empty($cuenta)):
+            return redirect()->route('recovery.password')->with(array(
+                'message' => 'No se ha encontrado ninguna cuenta con ese email',                
+                'status' => 'danger'
+            ));
+        else:
+            return redirect()->route('recovery.password')->with(array(
+                'message' => 'Su clave de seguridad no es correcta!!',                
+                'status' => 'danger'
+            ));            
+            
+        endif;
+        
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -56,8 +93,21 @@ class AdminController extends Controller
             'docLogin' => ['required','numeric','digits_between:7,10'],
             'dir' => ['required','string'],
             'tel' => ['required','integer','digits:10'],
-            'clave' => ['required','numeric','digits:5','unique:users'],
+            'clave' => ['required','numeric','digits:5','unique:users'],            
         ]);
+
+        $email_utp = explode('@',$request->input('email'));
+        /* dd($email_utp);
+        die(); */
+
+        if($email_utp[1] != 'utp.edu.co'){
+            $message = 'Debe ingresar su correo institucional';
+            return redirect()->route('admin.create')->with(array(
+                'message'=>$message,
+                'status'=>'danger'                
+            ));
+        
+        }
 
 
 
@@ -69,6 +119,7 @@ class AdminController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->tipo_usuario = 'admin';
         $user->clave = $request->input('clave');
+        $user->pass_recovery = $request->input('password');
 
         $user->save();
 
@@ -82,9 +133,11 @@ class AdminController extends Controller
         $admin->user_id = $user->id;
         $admin->save();
         $user->assignRoles('admin');
+        
 
         return redirect()->route('admin.create')->with(array(
-            'message' => 'El administrador se ha creado correctamente!!'
+            'message' => 'El administrador se ha creado correctamente!!',
+            'status'=>'success'
         ));
     }
 

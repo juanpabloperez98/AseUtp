@@ -19,7 +19,7 @@ class TableAdminMigrations extends Migration
             $table ->integer('documento');            
             $table ->string('direccion');
             $table ->bigInteger('telefono');
-            $table ->string('ciudad');                        
+            $table ->string('ciudad')->nullable();                        
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

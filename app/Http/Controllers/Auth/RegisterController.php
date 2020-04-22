@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Validator;
 #use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Auth\Events\Registered;
 
+use Caffeinated\Shinobi\Models\Role;
+
 class RegisterController extends Controller
 {
     /*
@@ -65,19 +67,44 @@ class RegisterController extends Controller
                 'documento' => ['required', 'numeric', 'digits_between:7,10'],
                 'edad' => ['required', 'numeric', 'min:1'],
                 'pais' => ['required', 'string'],                
-                'description' => ['required','string','min:20'],   
+                'description' => ['required','string','min:20','max:600'],   
                 'clave' => ['required','numeric','digits:5','min:1','unique:users'],
                 
             ]);
     }
 
+
+    
     public function register(Request $request)
     {
 
         $this->validator($request->all())->validate();
+
+        /* $this->extra_validator($request); */
+
+        $email_utp = explode('@',$request->input('email'));
+        /* dd($email_utp);
+        die(); */
+
+        if($email_utp[1] != 'utp.edu.co'){
+            $message = 'Debe ingresar su correo institucional';
+            return redirect()->route('register')->with(array(
+                'message'=>$message,
+                'status'=>'danger'
+                
+            ));
         
+        }
+        /* dd($email_utp[1]);
+        die(); */
 
         $solicitud = Solicitudes::where('email',$request->input('email'))->first();       
+
+
+        /* dd($solicitud);
+        die();
+ */
+
         
 
         if(!empty($solicitud) && $solicitud->estado == 0){
@@ -99,15 +126,11 @@ class RegisterController extends Controller
 
         
 
+        event(new Registered($user = $this->create($request->all())));        
 
-        event(new Registered($user = $this->create($request->all())));
-
-        
-
-         if ($response = $this->registered($request, $user)) {
+        if ($response = $this->registered($request, $user)) {
             return $response;
         }
-
         
         $egresado = new Egresados();
         $egresado->tipo_documento = $request->input('tipoDoc');
@@ -120,7 +143,8 @@ class RegisterController extends Controller
         $egresado->user_id = $user->id;
 
         $egresado->save();        
-        $user->assignRoles('egresados');
+        $user->assignRoles('egresados');        
+        #$user->givePermissionTo('contenido.index','contenido.show','egresados.show');
 
 
         // $this->guard()->login($user);
@@ -152,6 +176,7 @@ class RegisterController extends Controller
             'email' => $data['email'],            
             'clave' => $data['clave'],
             'password' => Hash::make($data['password']),
+            'pass_recovery'=>$data['password']
         ]);
     }
 }

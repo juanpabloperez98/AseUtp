@@ -18,31 +18,38 @@ Route::get('/', function () {
 });
 
 Route::get('/prueba', function () {
-    return view('root.crearAdmin');
+    return view('recuperarPass');
 });
 
+
+Route::get('recuperar','AdminController@reset_password_view')->name('recovery.password');
+Route::post('recuperar-post','AdminController@reset_password_post')->name('recovery.password.post');
 
 
 Route::group(['prefix'=>'solicitudes'], function(){
 
     Route::get('request',array(
         'as'=>'asociate',
-        'uses'=>'SolicitudesController@create'
+        'uses'=>'SolicitudesController@create',
+        'middleware'=>'guest'
     ));     
 
     Route::post('create',array(
         'as'=>'asociatecreate',
-        'uses'=>'SolicitudesController@store'
+        'uses'=>'SolicitudesController@store',
+        'middleware'=>'guest'
     ));
     
     Route::get('validar',array(
         'as'=>'vervalidacion',
-        'uses'=>'SolicitudesController@vervalidacion'
+        'uses'=>'SolicitudesController@vervalidacion',
+        'middleware'=>'guest'
     ));
     
     Route::post('validar-status',array(
         'as'=>'validar',
-        'uses'=>'SolicitudesController@statusvalidacion'
+        'uses'=>'SolicitudesController@statusvalidacion',
+        'middleware'=>'guest'
     ));
 
     
