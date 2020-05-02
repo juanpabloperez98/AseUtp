@@ -383,6 +383,13 @@
                     <small class="form-text text-muted ">Este código será requerido cuando desees recuperar la contraseña (5 digitos)</small>
                 </div>
 
+                <div class="form-check form-check-inline mb-5">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" required>
+                    <label class="form-check-label ml-2" for="inlineCheckbox1">
+                        <a href="{{ route('terminos-condiciones') }}">Acepto los terminos y condiciones</a>
+                    </label>
+                </div>
+
                 <button class="btn btn-primary btn-block" type="submit">Registrarse</button>
                 
             </form>

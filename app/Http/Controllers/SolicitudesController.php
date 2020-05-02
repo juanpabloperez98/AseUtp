@@ -78,6 +78,11 @@ class SolicitudesController extends Controller
 
     }
 
+    public function terminos_condiciones(){
+        return view('terminos');
+        
+    }
+
     
 
     /**

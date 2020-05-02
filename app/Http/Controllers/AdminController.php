@@ -35,16 +35,37 @@ class AdminController extends Controller
 
     }
 
+    private function newpass($length = 10)
+    {
+        
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+        
+
+    }
+
     public function reset_password_post(Request $request)
     {
         $email = $request->input('email');
         $clave = $request->input('clave');
         $cuenta = User::where('email',$email)->first();
         if(!empty($cuenta) && $cuenta->clave == $clave):
+            
+            $newpassword = $this->newpass();
+
+            $cuenta->password = Hash::make($newpassword);
+            $cuenta->pass_recovery = $newpassword;
+            
+            $cuenta->update();
 
             return redirect()->route('recovery.password')->with(array(
                 'message' => 'Su contraseña ha sido recuperada exitosamente',
-                'password' => $cuenta->pass_recovery,
+                'password' => $newpassword,
                 'status' => 'success'
             ));
 

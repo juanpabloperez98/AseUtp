@@ -24,6 +24,7 @@ Route::get('/prueba', function () {
 
 Route::get('recuperar','AdminController@reset_password_view')->name('recovery.password');
 Route::post('recuperar-post','AdminController@reset_password_post')->name('recovery.password.post');
+ROute::get('terminos-condiciones','SolicitudesController@terminos_condiciones')->name('terminos-condiciones');
 
 
 Route::group(['prefix'=>'solicitudes'], function(){
