@@ -1,6 +1,12 @@
-<div class="row">
+<div class="row">    
     <div class="p-4 col-12 col-md-6">                
-        <img class="img-fluid rounded-circle" src="{!!asset('img/indice.png')!!}" alt="imagenperfil">
+        @if ($usuario->foto)                        
+            <img class="img-fluid rounded-circle" src="{{ url('image/'.$usuario->foto ) }}" alt="imagenperfil">
+        @else
+            <img class="img-fluid rounded-circle" src="{!!asset('img/indice.png')!!}" alt="imagenperfil">            
+            
+        @endif
+        
         <div class="mt-5 p-2">
             <span class="font-weight-bold">Descripción</span>
             <p>
@@ -9,7 +15,7 @@
             <br>
         </div>
     </div>
-    <div class=" col-12 col-md-6 text-center">
+    <div class=" col-12 col-md-6 text-center">        
         <div class="m-3 pt-5 pb-2">
             <label for="nombreUser"><span class="font-weight-bold">Nombres:</span> {{$usuario->user->name}}</label>
             <br>
@@ -46,3 +52,4 @@
     </div>
     
 </div>
+

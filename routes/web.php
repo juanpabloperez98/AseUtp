@@ -24,7 +24,17 @@ Route::get('/prueba', function () {
 
 Route::get('recuperar','AdminController@reset_password_view')->name('recovery.password');
 Route::post('recuperar-post','AdminController@reset_password_post')->name('recovery.password.post');
-ROute::get('terminos-condiciones','SolicitudesController@terminos_condiciones')->name('terminos-condiciones');
+Route::get('terminos-condiciones','SolicitudesController@terminos_condiciones')->name('terminos-condiciones');
+Route::get('noticias-index','NoticiasController@index')->name('noticias.index')
+                                                       ->middleware(['auth']);
+Route::get('noticias/{slug}', 'NoticiasController@post')->name('noticias.post')
+                                                        ->middleware(['auth']);
+
+Route::get('categoria/{slug}', 'NoticiasController@category')->name('noticias.category')
+                                                        ->middleware(['auth']);
+
+Route::get('etiqueta/{slug}', 'NoticiasController@tag')->name('noticias.tag')
+                                                        ->middleware(['auth']);
 
 
 Route::group(['prefix'=>'solicitudes'], function(){
@@ -78,15 +88,44 @@ Route::middleware(['auth'])->group(function(){
                                                             ->middleware(['permission:admin.create']);
     Route::post('root/createadmin','AdminController@store')->name('admin.save')
                                                            ->middleware(['permission:admin.create']);
+    //Editar
+    Route::get('admin/edit','AdminController@edit')->name('admin.edit');
+    Route::get('admin/update','AdminController@update')->name('admin.update');
+
+    // Crear contenido
+    Route::get('contendido/create','ContenidoController@index')->name('contenido.index')
+                                                               ->middleware(['permission:contenido.create']);
+    
+
+
+
+    // Egresados
+    // Update
+    Route::get('egresados/edit','EgresadosController@edit')->name('egresados.edit');
+    Route::get('egresados/update','EgresadosController@update')->name('egresado.update');
+
+    
                                                         
 
+    Route::resource('tags','TagsController');
+    Route::resource('categories','CategoryController');
+    Route::resource('posts','PostController');
 
+
+
+    Route::get('image/{filename}',[
+        'as'=> 'image',
+        'uses'=> 'EgresadosController@getImage'
+    ]);
+    
                                   
 
    /*  Route::get('/prueba')->name('prueba')
                         ->middleware('permission:egresados.index'); */
 
 });
+
+
 
 Auth::routes();
 

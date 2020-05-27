@@ -1,6 +1,11 @@
 <div class="row">
     <div class="p-4 col-12 col-md-6">                
-        <img class="img-fluid rounded-circle" src="{!!asset('img/indice.png')!!}" alt="imagenperfil">        
+        @if ($usuario->foto)
+        
+        <img class="img-fluid rounded-circle" src="{{ url('image/'.$usuario->foto) }}" alt="imagenperfil">                
+        @else 
+            <img class="img-fluid rounded-circle" src="{!!asset('img/indice.png')!!}" alt="imagenperfil">        
+        @endif
     </div>
     <div class=" col-12 col-md-6 text-center">
         <div class="m-3 pt-5 pb-2">
@@ -39,3 +44,5 @@
     </div>
     
 </div>
+
+

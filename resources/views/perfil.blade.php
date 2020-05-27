@@ -4,6 +4,15 @@
 @section('content')
 <div class=" card-group mx-auto p-5" style="width: 60%; height: 60%;">
     <div class="card align-center">
+        @if(session('message'))
+                
+                @if (session('status') === 'success')
+                    <div class="alert alert-success text-center mb-5">
+                        {{ session('message')}}
+                    </div>                                       
+                @endif  
+
+        @endif
 
        
         <div class="card-header" style="background-color: rgb(224, 226, 226);">            
@@ -17,10 +26,6 @@
         @else 
             @include('root.perfil')                        
         @endif        
-        
-        
-        
-            
         
     </div>
 </div>

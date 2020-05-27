@@ -52,5 +52,19 @@
 
     .pagination{
         width: 50% !important;
-        margin-left: 43%;
     }
+
+    .custom-pagination-brand-blue{        
+        width: 100%;
+        
+        
+    }
+
+    .custom-pagination-brand-blue nav ul{
+        margin-left: 40%;
+        
+        
+    }
+
+    
+

@@ -15,13 +15,13 @@ class RootSeeder extends Seeder
     public function run()
     {
         //
-        $user = User::findOrFail(1);
+        $user = User::findOrFail(30);
 
         $user->assignRoles('superuser');
 
         Root::create([            
             'descripcion' => 'Soy el root',
-            'user_id' => 1
+            'user_id' => 30
         ]);
     }
 }

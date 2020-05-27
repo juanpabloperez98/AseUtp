@@ -115,6 +115,7 @@ class AdminController extends Controller
             'dir' => ['required','string'],
             'tel' => ['required','integer','digits:10'],
             'clave' => ['required','numeric','digits:5','unique:users'],            
+            'foto' => ['image']
         ]);
 
         $email_utp = explode('@',$request->input('email'));
@@ -152,7 +153,20 @@ class AdminController extends Controller
         $admin->direccion = $request->input('dir');
         $admin->telefono = $request->input('tel');
         $admin->user_id = $user->id;
-        $admin->save();
+
+        $foto = $request->file('foto');
+        if($foto){
+
+            $foto_path = time().$foto->getClientOriginalName();
+
+            \Storage::disk('images')->put($foto_path,\File::get($foto));
+
+
+            $admin->foto = $foto_path;
+
+        }
+
+        $admin->save();        
         $user->assignRoles('admin');
         
 
@@ -179,9 +193,19 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
         //
+        $user = \Auth::user();
+        $user_comp = Admin::where('user_id',$user->id)->first();
+
+        
+        // dd($user->id);
+
+        return view('update',[
+            'usuario' => $user,
+            'component' => $user_comp
+        ]);
     }
 
     /**
@@ -191,9 +215,46 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request)    
+    {   
+
+        $validate = $this->validate($request,[
+            'name' => ['required', 'string', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
+            'lastname' => ['required', 'string', 'regex:/^[\pL\s\-]+$/u', 'max:255'],
+            'dir' => ['required','string'],
+            'doc' => ['required','numeric','digits_between:7,10'],
+            'tel' => ['required','integer','digits:10'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+
+        $user = \Auth::user();
+        $admin = Admin::where('user_id',$user->id)->first();
+
+        $user->name = $request->input('name');
+        $user->last_name = $request->input('lastname');
+        $user->pass_recovery = $request->input('password');
+
+        
+        $admin->direccion = $request->input('dir');
+        $admin->documento = $request->input('doc');
+        $admin->telefono = $request->input('tel');
+
+
+        $user->password = Hash::make($request->input('password'));
+
+
+        $admin->update();
+        $user->update();
+
+
+
+        return redirect()->route('perfil.admin',['user'=>$user->id])->with(array('message'=>'Datos actualizados con exito','status'=>'success'));
+
+
+        
+        
+
+
     }
 
     /**
@@ -207,3 +268,4 @@ class AdminController extends Controller
         //
     }
 }
+

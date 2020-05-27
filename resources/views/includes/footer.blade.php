@@ -1,4 +1,4 @@
-<footer class="page-footer font-small bg-dark pt-4">
+<footer class="page-footer font-small bg-dark pt-4" style="">
 
     <!-- Footer Elements -->
     <div class="container">

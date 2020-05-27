@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers\Auth;
 
+// Propios de laravel
+// -------------Los del controlador--------------------------
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+// ------------Los de laravel---------------------------------
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
+
+// Modelos
 use App\User;
 use App\Solicitudes;
 use App\Egresados;
 use App\Admin;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-#use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Auth\Events\Registered;
 
+// Terceros
 use Caffeinated\Shinobi\Models\Role;
 
 class RegisterController extends Controller
@@ -69,6 +76,7 @@ class RegisterController extends Controller
                 'pais' => ['required', 'string'],                
                 'description' => ['required','string','min:20','max:600'],   
                 'clave' => ['required','numeric','digits:5','min:1','unique:users'],
+                'foto' =>  ['image']
                 
             ]);
     }
@@ -141,6 +149,15 @@ class RegisterController extends Controller
         $egresado->programa = $request->input('opcionesPrograma');
         $egresado->genero = $request->input('genero');
         $egresado->user_id = $user->id;
+
+
+        $image = $request->file('foto');
+        if($image){
+            $image_path = time().$image->getClientOriginalName();
+            \Storage::disk('images')->put($image_path,\File::get($image));
+
+            $egresado->foto = $image_path;
+        }
 
         $egresado->save();        
         $user->assignRoles('egresados');        

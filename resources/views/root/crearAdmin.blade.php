@@ -36,7 +36,7 @@
                     <span class="font-italic">Favor tener cuidado con el ingreso de los datos.</span>
                 </div>
             </div>
-            <form class="flex text-center" method="POST" action="{{route('admin.save')}}">
+            <form class="flex text-center" method="POST" action="{{route('admin.save')}}" enctype="multipart/form-data">
                 @csrf
 
                 @if($errors->any())
@@ -103,10 +103,9 @@
                                 
                                 <br>
 
-                                <div class="form-group ">
-                                    <p class="help-block" style="font-style:oblique;">Sube una foto de perfil</p>
-                                    <label class="text-bold " for="fotoRegistroAdm">Sube una foto de perfil</label>
-                                    <input class="text-center " type="file" id="fotoRegistroAdm">
+                                <div class="form-group ">                                    
+                                    <label class="text-bold " for="foto">Sube una foto de perfil</label>
+                                    <input class="text-center" type="file" id="foto" name="foto">
                                 </div>
 
                                 <div class="form-group ">

@@ -30,7 +30,7 @@
 
             <h3 class="card-tittle text-center font-italic">¡Regístrate y haz parte de esta comunidad!</h3><br>
 
-            <form action="{{ route('register') }}" method="POST" class="flex text-center">
+            <form action="{{ route('register') }}" enctype="multipart/form-data" method="POST" class="flex text-center">
                 @csrf
 
                 @if($errors->any())
