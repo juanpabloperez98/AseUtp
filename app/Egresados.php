@@ -13,4 +13,12 @@ class Egresados extends Model
     public function user(){
         return $this->belongsTo('App\User','user_id');
     }
+
+    public function solicitudes(){
+        return $this->hasMany('App\SolicitudesFriends');
+    }
+
+    public function amigos(){
+        return $this->hasMany('App\RelationUser');
+    }
 }

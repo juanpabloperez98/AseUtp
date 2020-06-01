@@ -17,5 +17,6 @@ $factory->define(Post::class, function (Faker $faker) {
         'body' => $faker->text(500),
         'file' => $faker->imageUrl($width = 1200, $height = 400), /* Me crea de manera aleatoria imagenes en la web */
         'status' => $faker->randomElement(['DRAFT','PUBLISHED']),
+        
     ];
 });

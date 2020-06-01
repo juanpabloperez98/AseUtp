@@ -25,5 +25,15 @@ class UserSeeder extends Seeder
             'clave' => 1234,
             'pass_recovery' => 'root123'
         ]);
+
+        User::create([
+            'name' => 'Juan Pablo',
+            'last_name' => 'Perez Santos',            
+            'email' => 'juan@utp.edu.co',
+            'password' => Hash::make('deathnote3'),                        
+            'tipo_usuario' => 'egresado',
+            'clave' => 12345,
+            'pass_recovery' => 'deathnote3'
+        ]);
     }
 }

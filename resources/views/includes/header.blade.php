@@ -28,9 +28,40 @@
                     </li>
                 @else
 
+                @if (Auth::user()->tipo_usuario === 'egresado')
+                        
+                <form class="form-inline my-2 my-lg-0 mr-5" action="{{ route('buscar.amigos') }}">
+                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar Amigos</button>
+                </form>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Amigos
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">                                                        
+                       
+                        <a href="{{ route('ver.amigos') }}" class="dropdown-item">Ver amigos</a>
+                        <a href="{{ route('ver.solicitudes') }}" class="dropdown-item">Ver solicitudes de amistad</a>
+                        <a href="{{ route('ver.enviadas') }}" class="dropdown-item">Ver solicitudes de amistad enviadas</a>
+                       
+                        
+                    </div>                    
+
+
+                </li>
+                        
+                @endif
+
                 <li class="nav-item mr-3">
                     <a href="{{ route('noticias.index') }}" class="nav-link">Ver Posts</a>
                 </li>             
+
+                   
+
+                {{-- <li class="nav-item mr-3">
+                    <a href="{{ route('buscar.amigos') }}" class="nav-link">Ver Amigos</a>
+                </li>              --}}
                     {{-- Permisos de ADMIN --}}
                     @can('egresados.index')
                         <li class="nav-item mr-3">
@@ -62,6 +93,9 @@
                             </div>
                         </li>
                     @endcan
+
+
+                    
 
 
                     <li class="nav-item dropdown">
@@ -98,4 +132,6 @@
         </div>
     </div>
 </nav>
+
+
 

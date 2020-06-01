@@ -117,7 +117,15 @@ Route::middleware(['auth'])->group(function(){
         'as'=> 'image',
         'uses'=> 'EgresadosController@getImage'
     ]);
-    
+
+
+    Route::get('search/','AmigosController@listar_amigos')->name('buscar.amigos');
+    Route::get('solicitud-amistad/{id}','AmigosController@solicitud_amistad')->name('agregar.amigos');
+    Route::get('ver-solicitudes-enviadas/','AmigosController@ver_solicitud_amistad_enviada')->name('ver.enviadas');
+    Route::get('ver-solicitudes/','AmigosController@ver_solicitudes')->name('ver.solicitudes');
+    Route::get('ver-amigos/','AmigosController@ver_amigos')->name('ver.amigos');
+    Route::post('acepted/{id}','AmigosController@aceptar')->name('solicitud.aceptar');
+    Route::post('rechazar/{id}','AmigosController@rechazar')->name('solicitud.rechazar');
                                   
 
    /*  Route::get('/prueba')->name('prueba')
